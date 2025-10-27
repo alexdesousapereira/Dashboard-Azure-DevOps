@@ -1,0 +1,162 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 1126.4000244140625,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 704.38305001469371,
+            "y": 12.155302040154538
+          },
+          "nodeIndex": "dCliente",
+          "nodeLineageTag": "b2c45405-6dc6-40e2-82e0-c4d886151dfb",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 20.140412819753806
+          },
+          "nodeIndex": "dProduto",
+          "nodeLineageTag": "5c96d2ff-f217-47ee-92ca-7c5741ba6e9d",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 373.20156119318517,
+            "y": 0
+          },
+          "nodeIndex": "fVendas",
+          "nodeLineageTag": "b7b7bc3e-09fc-4d1e-be2d-5efa7d0feaac",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0,
+          "expandedHeight": 296
+        },
+        {
+          "location": {
+            "x": 1126.3830500146937,
+            "y": 102
+          },
+          "nodeIndex": "Medidas",
+          "nodeLineageTag": "0512c956-6ca3-4f5d-b6d9-9296bf57a01f",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 372.38305001469371,
+            "y": 316
+          },
+          "nodeIndex": "dCalendario",
+          "nodeLineageTag": "d217a2d6-82e6-4abc-b2b0-4f49d92fb0b7",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0,
+          "expandedHeight": 300
+        },
+        {
+          "location": {
+            "x": 1410.3830500146937,
+            "y": 158
+          },
+          "nodeIndex": "Update",
+          "nodeLineageTag": "7475b9b1-c941-4237-8178-b9427708fb7d",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1694.3830500146937,
+            "y": 110
+          },
+          "nodeIndex": "documentacao",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1978.3830500146937,
+            "y": 110
+          },
+          "nodeIndex": "Metadados_Colunas",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2262.3830500146937,
+            "y": 110
+          },
+          "nodeIndex": "Metadados_Medidas",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2546.3830500146937,
+            "y": 110
+          },
+          "nodeIndex": "Metadados_Relationships",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2830.3830500146937,
+            "y": 110
+          },
+          "nodeIndex": "Metadados_Tabelas",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Todas as tabelas",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Todas as tabelas",
+  "defaultDiagram": "Todas as tabelas"
+}

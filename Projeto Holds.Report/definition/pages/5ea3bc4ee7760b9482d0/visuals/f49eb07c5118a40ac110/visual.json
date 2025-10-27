@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "f49eb07c5118a40ac110",
+  "position": {
+    "x": 0,
+    "y": 91.712443276809168,
+    "z": 0,
+    "height": 628.53594459039891,
+    "width": 1280.305708144256,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "htmlContent443BE3AD55E043BF878BED274D3A6855",
+    "query": {
+      "queryState": {
+        "content": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas"
+                    }
+                  },
+                  "Property": "HTML_Glossario"
+                }
+              },
+              "queryRef": "Medidas.HTML_Glossario",
+              "nativeQueryRef": "HTML_Glossario"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

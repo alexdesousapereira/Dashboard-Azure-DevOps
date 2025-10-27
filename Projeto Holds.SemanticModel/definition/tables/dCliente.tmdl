@@ -1,0 +1,33 @@
+table dCliente
+	lineageTag: b2c45405-6dc6-40e2-82e0-c4d886151dfb
+
+	column codigo_cliente
+		dataType: string
+		lineageTag: a7864957-d81e-4aee-b58e-2de3f6f6c2d5
+		summarizeBy: none
+		sourceColumn: codigo_cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column descricao_cliente
+		dataType: string
+		lineageTag: 760c0609-839c-47c5-8157-37475a0d923d
+		summarizeBy: none
+		sourceColumn: descricao_cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dCliente = m
+		mode: import
+		queryGroup: Dimensões
+		source =
+				let
+				    Fonte = PostgreSQL.Database("localhost", "stage"),
+				    vendas_view_cliente = Fonte{[Schema="vendas",Item="view_cliente"]}[Data]
+				in
+				    vendas_view_cliente
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

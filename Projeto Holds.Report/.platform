@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Projeto Holds"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "e6d9afa2-533f-460b-8761-4fb70655385c"
+  }
+}

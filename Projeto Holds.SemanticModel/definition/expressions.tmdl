@@ -1,0 +1,32 @@
+expression RangeStart = #datetime(2023, 1, 1, 0, 0, 0) meta [IsParameterQuery=true, Type="DateTime", IsParameterQueryRequired=true]
+	lineageTag: 01cd1144-e89d-4d6c-a344-db9f56d95fa3
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = DateTime
+
+expression RangeEnd = #datetime(2023, 12, 31, 0, 0, 0) meta [IsParameterQuery=true, Type="DateTime", IsParameterQueryRequired=true]
+	lineageTag: 56320647-3d18-4d3a-a1f4-837cce0a18c1
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = DateTime
+
+expression tbFeriados =
+		let
+		    Fonte = Excel.Workbook(Web.Contents("https://www.anbima.com.br/feriados/arqs/feriados_nacionais.xls"), null, true),
+		    Feriados = Fonte{[Name="Feriados"]}[Data],
+		    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Feriados, [PromoteAllScalars=true]),
+		    #"Outras Colunas Removidas" = Table.SelectColumns(#"Cabeçalhos Promovidos",{"Data", "Dia da Semana", "Feriado"}),
+		    #"Linhas em Branco Removidas" = Table.SelectRows(#"Outras Colunas Removidas", each not List.IsEmpty(List.RemoveMatchingItems(Record.FieldValues(_), {"", null}))),
+		    #"Tipo Alterado" = Table.TransformColumnTypes(#"Linhas em Branco Removidas",{{"Data", type date}}),
+		    #"Erros Removidos" = Table.RemoveRowsWithErrors(#"Tipo Alterado", {"Data"})
+		in
+		    #"Erros Removidos"
+	lineageTag: 74279513-e384-413f-9380-7cfb8e8226e1
+	queryGroup: ExtraTable
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

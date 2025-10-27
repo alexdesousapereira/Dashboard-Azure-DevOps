@@ -1,0 +1,27 @@
+table Update
+	lineageTag: 7475b9b1-c941-4237-8178-b9427708fb7d
+
+	column 'Data da última atualização'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: bdb0c228-757a-4926-9670-1ebbb50d3e52
+		summarizeBy: none
+		sourceColumn: Data da última atualização
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Update = m
+		mode: import
+		source =
+				let
+				    Fonte = DateTimeZone.SwitchZone(DateTimeZone.LocalNow(),-3),
+				    #"Convertido para Tabela" = #table(1, {{Fonte}}),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Convertido para Tabela",{{"Column1", type datetimezone}}),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Tipo Alterado",{{"Column1", "Data da última atualização"}})
+				in
+				    #"Colunas Renomeadas"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,33 @@
+table dProduto
+	lineageTag: 5c96d2ff-f217-47ee-92ca-7c5741ba6e9d
+
+	column codigo_produto
+		dataType: string
+		lineageTag: f8bca003-0a39-4b4d-aef8-b1198f71750f
+		summarizeBy: none
+		sourceColumn: codigo_produto
+
+		annotation SummarizationSetBy = Automatic
+
+	column descricao_produto
+		dataType: string
+		lineageTag: a889a4fc-d29f-4728-b0cf-4b9d015dcbc7
+		summarizeBy: none
+		sourceColumn: descricao_produto
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dProduto = m
+		mode: import
+		queryGroup: Dimensões
+		source =
+				let
+				    Fonte = PostgreSQL.Database("localhost", "stage"),
+				    vendas_view_produto = Fonte{[Schema="vendas",Item="view_produto"]}[Data]
+				in
+				    vendas_view_produto
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

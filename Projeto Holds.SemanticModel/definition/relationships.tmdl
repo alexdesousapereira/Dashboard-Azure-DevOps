@@ -1,0 +1,12 @@
+relationship AutoDetected_a1afebbf-626e-4815-bfb3-3c621e5c2adc
+	fromColumn: fVendas.codigo_produto
+	toColumn: dProduto.codigo_produto
+
+relationship AutoDetected_c5eb0fb1-0fba-42c4-a14d-45a524370069
+	fromColumn: fVendas.codigo_cliente
+	toColumn: dCliente.codigo_cliente
+
+relationship 4a7f8014-991b-8cc6-3190-218d2f85e00c
+	fromColumn: fVendas.data_venda
+	toColumn: dCalendario.Data
+

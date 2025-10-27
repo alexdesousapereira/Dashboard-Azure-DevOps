@@ -1,0 +1,103 @@
+table fVendas
+	lineageTag: b7b7bc3e-09fc-4d1e-be2d-5efa7d0feaac
+
+	column data_venda
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 324c177d-f9a7-442a-8db3-dd306ed0babc
+		summarizeBy: none
+		sourceColumn: data_venda
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column numero_nota
+		dataType: int64
+		formatString: 0
+		lineageTag: f01f0ec4-9b5c-49a2-bdf8-faa51b581326
+		summarizeBy: sum
+		sourceColumn: numero_nota
+
+		annotation SummarizationSetBy = Automatic
+
+	column codigo_produto
+		dataType: string
+		lineageTag: 7e263404-235a-4665-8d1e-740b7ac49721
+		summarizeBy: none
+		sourceColumn: codigo_produto
+
+		annotation SummarizationSetBy = Automatic
+
+	column codigo_cliente
+		dataType: string
+		lineageTag: 5da3e36c-d74f-4b0c-b37f-9375fe6826a1
+		summarizeBy: none
+		sourceColumn: codigo_cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column valor_unitario_produto
+		dataType: double
+		lineageTag: ec606d1b-2026-4210-b17b-ce7323209170
+		summarizeBy: sum
+		sourceColumn: valor_unitario_produto
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column quantidade_vendida_produto
+		dataType: int64
+		formatString: 0
+		lineageTag: 8212ce52-776c-47dc-a233-4a65cea50e12
+		summarizeBy: sum
+		sourceColumn: quantidade_vendida_produto
+
+		annotation SummarizationSetBy = Automatic
+
+	column valor_total
+		dataType: double
+		lineageTag: 3b4e2e33-0009-4eed-87a1-2849ce334305
+		summarizeBy: sum
+		sourceColumn: valor_total
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column custo_da_venda
+		dataType: double
+		lineageTag: 03cdce38-1882-4853-bb2f-ef1c76bcf450
+		summarizeBy: sum
+		sourceColumn: custo_da_venda
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column valor_tabela_de_preco_do_produto
+		dataType: double
+		lineageTag: 44e9fb2b-bcd4-439d-bdff-8d5d36e48790
+		summarizeBy: sum
+		sourceColumn: valor_tabela_de_preco_do_produto
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition fVendas = m
+		mode: import
+		queryGroup: Fatos
+		source =
+				let
+				    Fonte = PostgreSQL.Database("localhost", "stage"),
+				    vendas_view_sales_summary = Fonte{[Schema="vendas",Item="view_sales_summary"]}[Data],
+				    #"Tipo Alterado" = Table.TransformColumnTypes(vendas_view_sales_summary,{{"data_venda", type date}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

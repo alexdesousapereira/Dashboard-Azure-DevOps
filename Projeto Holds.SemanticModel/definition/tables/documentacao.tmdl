@@ -1,0 +1,81 @@
+table documentacao
+	lineageTag: facc8d37-ca8e-4505-b45f-f28c1d4fd09e
+
+	column Type
+		lineageTag: dd30295e-b345-4408-96d9-3b213f444861
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Type]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		lineageTag: 466654fa-20c2-47e4-910e-b39a8152c368
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Name]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		lineageTag: 620681a9-2fc9-4490-ba4b-0cbaa7629d8f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Description]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Location
+		lineageTag: 9be7ad50-bac5-4903-b032-6aa30be1651e
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Location]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Expression
+		lineageTag: 6c179bab-63f8-47d4-8e1a-9313e5d4b519
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Expression]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition documentacao = calculated
+		mode: import
+		source =
+				
+				VAR _measures_info =
+				    INFO.VIEW.MEASURES()
+				VAR _measures =
+				    SELECTCOLUMNS(
+				        _measures_info,
+				        "Type", "Measure",
+				        "Name", [Name],
+				        "Description", [Description],
+				        "Location",
+				            "Tabela: " & [Table] & UNICHAR(10) & "Pasta: " & [DisplayFolder],
+				        "Expression", [Expression]
+				    )
+				VAR _columns =
+				    SELECTCOLUMNS(
+				        FILTER(
+				            INFO.VIEW.COLUMNS(),
+				            [Table] <> "Data Dictionary" && NOT ([IsHidden])
+				        ),
+				        "Type", "Column",
+				        "Name", [Name],
+				        "Description", [Description],
+				        "Location", "Tabela: " & [Table],
+				        "Expression", ""
+				    )
+				VAR _combined =
+				    UNION(
+				        _columns,
+				        _measures
+				    )
+				RETURN
+				    _combined
+
+	annotation PBI_Id = 948435c829db435fbb8522bfc0cc7f4b
+
